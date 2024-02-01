@@ -1,0 +1,114 @@
+﻿@page
+@model BookwormsOnline.Pages.RegisterModel
+@{
+}
+<div class="container mt-5">
+
+    <div class="row justify-content-center align-items-center">
+
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="mb-3">Register </h1>
+
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <!-- First Name -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.FirstName">First Name</label>
+                    <input type="text" asp-for="RModel.FirstName" class="form-control" />
+                    <span asp-validation-for="RModel.FirstName" class="text-danger"></span>
+                </div>
+
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.LastName">Last Name</label>
+                    <input type="text" asp-for="RModel.LastName" class="form-control" />
+                    <span asp-validation-for="RModel.LastName" class="text-danger"></span>
+                </div>
+
+                <!-- Credit Card -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.CreditCard">Credit Card</label>
+                    <input type="number" asp-for="RModel.CreditCard" class="form-control" />
+                    <span asp-validation-for="RModel.CreditCard" class="text-danger"></span>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.MobileNo">Mobile Number</label>
+                    <input type="number" asp-for="RModel.MobileNo" class="form-control" />
+                    <span asp-validation-for="RModel.MobileNo" class="text-danger"></span>
+                </div>
+
+                <!-- Billing Address -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.Billing">Billing Address</label>
+                    <input type="text" asp-for="RModel.Billing" class="form-control" />
+                    <span asp-validation-for="RModel.Billing" class="text-danger"></span>
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.Shipping">Shipping Address</label>
+                    <input type="text" asp-for="RModel.Shipping" class="form-control" />
+                    <span asp-validation-for="RModel.Shipping" class="text-danger"></span>
+                </div>
+
+                <!-- Email Address -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.Email">Email Address</label>
+                    <input type="text" asp-for="RModel.Email" class="form-control" />
+                    <span asp-validation-for="RModel.Email" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.Password">Password</label>
+                    <input type="password" asp-for="RModel.Password" class="form-control" id="password" onkeyup="checkPasswordStrength()" />
+                    <span id="passwordFeedback" class="text-info"></span>
+                    <span asp-validation-for="RModel.Password" class="text-danger"></span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="RModel.ConfirmPassword">Confirm Password</label>
+                    <input type="password" asp-for="RModel.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+
+                @section scripts {
+                    <script>
+                        function checkPasswordStrength() {
+                            var strength = 0;
+                            var password = document.getElementById("password").value;
+                            if (password.length >= 8) strength += 1;
+                            if (password.match(/[a-z]+/)) strength += 1;
+                            if (password.match(/[A-Z]+/)) strength += 1;
+                            if (password.match(/[0-9]+/)) strength += 1;
+                            if (password.match(/[\W]+/)) strength += 1;
+
+                            var feedback = "";
+                            switch (strength) {
+                                case 0:
+                                case 1: feedback = "Very Weak"; break;
+                                case 2: feedback = "Weak"; break;
+                                case 3: feedback = "Good"; break;
+                                case 4: feedback = "Strong"; break;
+                                case 5: feedback = "Very Strong"; break;
+                            }
+
+                            document.getElementById("passwordFeedback").innerText = feedback;
+                        }
+                    </script>
+
+                }
+
+
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
